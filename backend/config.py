@@ -12,6 +12,8 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_RECORD_QUERIES = False
     BASEDIR = basedir
+    TRACK_USAGE_USE_FREEGEOIP = False
+    TRACK_USAGE_INCLUDE_OR_EXCLUDE_VIEWS = 'include'
 
     # redis :// [[username :] password@] host [: port] [/ database]
     CELERY_BROKER_URL = os.getenv("REDIS_URI")

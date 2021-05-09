@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+celery = "==5.0.5"
+click = "==7.1.1"
+coverage = "==5.4"
+flake8 = "==3.9.0"
+flask-marshmallow = "==0.13.0"
+Flask = "==1.1.1"
+Flask-Migrate = "==2.5.3"
+Flask-SQLAlchemy = "==2.4.1"
+flask-track-usage = "*"
+psycopg2 = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
