@@ -3,8 +3,6 @@ from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 from backend.config import config, Config
 from celery import Celery
-from flask_tracking_usage import TrackUsage
-from flask_tracking_usage.storage.sql import SQLStorage
 
 
 db = SQLAlchemy()
@@ -14,14 +12,11 @@ celery = Celery(
     broker=Config.CELERY_BROKER_URL,
     # backend='db+sqlite:///results.sqlite'
 )
-t = TrackUsage(
-        app,
-        [SQLStorage(db=db)]
-    )
 
 
 def create_app(config_name):
     app = Flask(__name__)
+    print(config_name)
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
 
@@ -29,8 +24,14 @@ def create_app(config_name):
     ma.init_app(app)
     celery.conf.update(app.config)
 
+
     from backend.app.api.sample_api import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api/v1')
+
+    from backend.app.api.sample_api.todo import t
+    from flask_track_usage.storage.sql import SQLStorage
+    with app.app_context():
+        t.init_app(app, [SQLStorage(db=db)])
 
     register_error(app)
 

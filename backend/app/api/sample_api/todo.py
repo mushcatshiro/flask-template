@@ -4,8 +4,12 @@ from backend.app.schemas import schema_todo
 from backend.app.api.sample_api import api
 from backend.app.worker.sample_worker import sample_task
 from marshmallow import ValidationError
+from flask_track_usage import TrackUsage
+
+t = TrackUsage()
 
 
+@t.include
 @api.route('/')
 def hello_world():
     current_app.logger.info("in hello_world endpoint")
