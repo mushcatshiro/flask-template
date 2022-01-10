@@ -1,20 +1,18 @@
 from flask import jsonify, request, current_app
+from backend.app import track
 from backend.app.crud import crud_todo
 from backend.app.schemas import schema_todo
 from backend.app.api.sample_api import api
 from backend.app.worker.sample_worker import sample_task
 from marshmallow import ValidationError
-from flask_track_usage import TrackUsage
-
-t = TrackUsage()
 
 
-@t.include
+@track.include
 @api.route('/')
 def hello_world():
     current_app.logger.info("in hello_world endpoint")
-    task = sample_task.delay()
-    current_app.logger.info(f"{task.id} being send to broker")
+    # task = sample_task.delay()
+    # current_app.logger.info(f"{task.id} being send to broker")
     return jsonify({"response": 'hello world'})
 
 

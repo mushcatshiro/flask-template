@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
+from flask_track_usage import TrackUsage
 from backend.config import config, Config
 from celery import Celery
 
@@ -12,6 +13,7 @@ celery = Celery(
     broker=Config.CELERY_BROKER_URL,
     # backend='db+sqlite:///results.sqlite'
 )
+track = TrackUsage()
 
 
 def create_app(config_name):
@@ -24,14 +26,13 @@ def create_app(config_name):
     ma.init_app(app)
     celery.conf.update(app.config)
 
+    from flask_track_usage.storage.sql import SQLStorage
+    with app.app_context():
+        track.init_app(app, [SQLStorage(db=db)])
 
     from backend.app.api.sample_api import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api/v1')
 
-    from backend.app.api.sample_api.todo import t
-    from flask_track_usage.storage.sql import SQLStorage
-    with app.app_context():
-        t.init_app(app, [SQLStorage(db=db)])
 
     register_error(app)
 
