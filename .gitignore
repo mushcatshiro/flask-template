@@ -3,5 +3,5 @@ tmp/
 .pytest_cache/
 .coverage
 *.log
-migrations/
-helper/
+ft/
+.env*
