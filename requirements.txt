@@ -1,8 +1,0 @@
-celery==5.0.5
-click==7.1.1
-coverage==5.4
-flake8==3.9.0
-Flask==1.1.1
-flask-marshmallow==0.13.0
-Flask-Migrate==2.5.3
-Flask-SQLAlchemy==2.4.1
