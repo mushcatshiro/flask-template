@@ -1,6 +1,6 @@
 from backend.app import db
 from backend.app.schemas.schema_todo import TodoSchema
-from backend.app.models.model_todo import Todo
+from .model_todo import Todo
 
 
 def create_todo(new_todo):

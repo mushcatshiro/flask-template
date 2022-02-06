@@ -18,6 +18,7 @@ class RequestFormatter(logging.Formatter):
 
 
 class CeleryConfig:
+    # redis :// [[username :] password@] host [: port] [/ database]
     broker_url = os.environ.get('CELERY_BROKER_URL')
     backend_result_storage = os.environ.get('CELERY_BACKEND_RESULT_STORAGE')
 
@@ -29,11 +30,8 @@ class Config:
     MAIL_PORT = None  # pending setup
     MAIL_USERNAME = None  # pending setup
     MAIL_PASSWORD = None  # pending setup
+    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMYDBURI')
     BASEDIR = basedir
-
-    # redis :// [[username :] password@] host [: port] [/ database]
-    CELERY_BROKER_URL = os.getenv("REDIS_URI")
-
     PSQLDB = {
         'host': os.environ.get('PSQLDBHOST'),
         'username': os.environ.get('PSQLDBUSERNAME'),

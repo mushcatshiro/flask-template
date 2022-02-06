@@ -6,7 +6,7 @@ from marshmallow import ValidationError
 
 
 from . import api
-from backend.app.business_logic import BaseError
+from backend.app.business_logic.custom_exceptions import BaseException
 
 
 @api.before_request
@@ -39,7 +39,7 @@ def log_request(response):
     return response
 
 
-@api.errorhandler(BaseError)
+@api.errorhandler(BaseException)
 def error_response(e):
     current_app.logger(e)
     return jsonify(

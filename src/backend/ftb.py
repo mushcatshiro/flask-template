@@ -3,7 +3,7 @@ from backend.app import create_app
 import click
 
 
-app = create_app(os.getenv('FLASK_CONFIG') or 'testing')
+app = create_app(os.environ.get('FLASKCONFIG') or 'testing')
 
 
 @app.cli.command()
