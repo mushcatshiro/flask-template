@@ -60,7 +60,7 @@ class TestingConfig(Config):
         app.logger.removeHandler(default_handler)
         app.logger.setLevel(logging.DEBUG)
         formatter = RequestFormatter(
-            '[%(asctime)s] payload: %(context)s ',
+            '[%(asctime)s] payload: %(context)s '
             '%(levelname)s in %(module)s: %(message)s'
         )
 

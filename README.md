@@ -18,17 +18,17 @@ flask quick start template. to add cookiecutter. assuming development in unix en
 
 ## backlog
 
-- [ ] removing flask track usage
+- [x] removing flask track usage
 - [ ] business logic
   - [ ] http conn
   - [ ] db conn
   - [ ] unit testing
-  - [ ] hook setup
-  - [ ] exception base class
+  - [x] hook setup
+  - [x] exception base class
   - [ ] mixin(s)
 - [ ] flask app testing
 - [ ] post deployment testing script
-- [t] support multiple requirements.txt
+- [x] support multiple requirements.txt
 - [ ] adding dockerfile and docker-compose
 - [ ] production support
 - [ ] thread job support
