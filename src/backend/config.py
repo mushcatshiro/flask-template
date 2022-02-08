@@ -31,6 +31,7 @@ class Config:
     MAIL_USERNAME = None  # pending setup
     MAIL_PASSWORD = None  # pending setup
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMYDBURI')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
     BASEDIR = basedir
     PSQLDB = {
         'host': os.environ.get('PSQLDBHOST'),

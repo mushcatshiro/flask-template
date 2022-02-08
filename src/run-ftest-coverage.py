@@ -5,7 +5,7 @@ import unittest
 
 def coverage_decorator(func):
     def _coverage_decorator(*args, **kwargs):
-        COV = coverage.coverage(branch=True, include='backend/app/*')
+        COV = coverage.coverage(branch=True, include='backend/app/api/*')
         COV.start()
         func(*args, **kwargs)
         COV.stop()
@@ -23,7 +23,7 @@ def coverage_decorator(func):
 
 @coverage_decorator
 def run():
-    tests = unittest.TestLoader().discover('backend/tests')
+    tests = unittest.TestLoader().discover('backend/ftests')
     unittest.TextTestRunner(verbosity=2).run(tests)
 
 

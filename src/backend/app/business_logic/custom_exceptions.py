@@ -8,3 +8,7 @@ class BaseException(Exception):
 
 class HttpConnectionError(BaseException):
     pass
+
+
+class PsqlConnectionError(BaseException):
+    pass

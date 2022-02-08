@@ -1,11 +1,8 @@
 from backend.app import create_app, db
 import unittest
-import json
 
 
 class FlaskApiAPITest(unittest.TestCase):
-    """docstring for FlaskAPITest"""
-
     def setUp(self):
         self.app = create_app('testing')
         self.app_context = self.app.app_context()
@@ -20,9 +17,9 @@ class FlaskApiAPITest(unittest.TestCase):
 
     def test_api_hellow_world(self):
         response = self.client.get('/api/v1/')
-        json_response = json.loads(response.get_data(as_text=True))
+        rv = response.get_json()
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(json_response, {"response": "hello world"})
+        self.assertEqual(rv, {"response": "hello world"})
 
 
 """

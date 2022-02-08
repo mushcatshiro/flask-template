@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from flask_marshmallow import Marshmallow
-from backend.config import config, CeleryConfig
+from backend.config import config  # , CeleryConfig
 # from celery import Celery
 from flask_sqlalchemy import SQLAlchemy
 

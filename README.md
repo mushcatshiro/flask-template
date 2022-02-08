@@ -20,8 +20,10 @@ flask quick start template. to add cookiecutter. assuming development in unix en
 
 - [x] removing flask track usage
 - [ ] business logic
-  - [ ] http conn
-  - [ ] db conn
+  - [x] contextmanager base class
+  - [x] http conn
+  - [x] db conn
+  - [ ] sqlalchemy conn
   - [ ] unit testing
   - [x] hook setup
   - [x] exception base class
@@ -36,3 +38,8 @@ flask quick start template. to add cookiecutter. assuming development in unix en
 - [ ] cookiecutter support
   - [ ] CORS
   - [ ] celery
+  - [ ] sqlalchemy
+
+### contentious issues
+
+the test for celery tasks is not testing celery's behavior. celery testing will be available later once the author have found a much elagant way of doing things or is convinved by the methods presented.
