@@ -39,7 +39,8 @@ flask quick start template. to add cookiecutter. assuming development in unix en
   - [ ] CORS
   - [ ] celery
   - [ ] sqlalchemy
+- [ ] logging for unit testing
 
 ### contentious issues
 
-the test for celery tasks is not testing celery's behavior. celery testing will be available later once the author have found a much elagant way of doing things or is convinved by the methods presented.
+the test for celery tasks are not testing celery's behavior. celery testing will be available later once the author have found a much elagant way of doing things or is convinved by the methods presented.
