@@ -40,6 +40,7 @@ flask quick start template. to add cookiecutter. assuming development in unix en
   - [ ] celery
   - [ ] sqlalchemy
 - [ ] logging for unit testing
+- [ ] exceptions logging and user message
 
 ### contentious issues
 
