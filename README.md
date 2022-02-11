@@ -23,7 +23,7 @@ flask quick start template. to add cookiecutter. assuming development in unix en
   - [x] contextmanager base class
   - [x] http conn
   - [x] db conn
-  - [ ] sqlalchemy conn
+  - [x] sqlalchemy conn
   - [ ] unit testing
   - [x] hook setup
   - [x] exception base class

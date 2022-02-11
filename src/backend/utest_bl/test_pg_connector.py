@@ -37,6 +37,7 @@ class PsqlConnectionTest(unittest.TestCase):
             db.cursor.execute(
                 'DROP TABLE test_todos'
             )
+            db.conn.commit()
 
     def _test_query(self):
         with PostgresConnectionSession(

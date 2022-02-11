@@ -41,6 +41,7 @@ def log_request(response):
 
 @api.errorhandler(BaseException)
 def error_response(e):
+    # TODO: to verify what e is being logged
     current_app.logger(e)
     return jsonify(
         {

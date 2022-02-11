@@ -1,8 +1,9 @@
-import coverage
+import logging
 import os
 import unittest
 
 
+import coverage
 from dotenv import load_dotenv
 
 
@@ -34,4 +35,19 @@ def run():
 
 
 if __name__ == '__main__':
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+    PROJECT_NAME = os.environ.get('PROJECT_NAME')
+    formatter = logging.Formatter(
+        '[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
+    )
+    logfile_handler = logging.FileHandler(
+        os.path.join(
+            f'{PROJECT_NAME}-UTEST-BL.log'
+        )
+
+    )
+    logfile_handler.setFormatter(formatter)
+    logfile_handler.setLevel(logging.DEBUG)
+    logger.addHandler(logfile_handler)
     run()

@@ -27,6 +27,7 @@ class PostgresConnectionSession(ConnectionBaseClass):
             )
         except Exception:
             raise PsqlConnectionError(
+                'database connection error',
                 'failed to create connection '
                 f'to {host}:{port} '
                 f'with user: {username}'
