@@ -1,5 +1,5 @@
 from backend.app import ma
-from backend.app.business_logic.crud.model_todo import Todo
+from ..models import Todo
 from marshmallow import fields
 
 

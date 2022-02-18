@@ -1,7 +1,8 @@
 from flask import jsonify, request, current_app
 from backend.app.business_logic.crud import crud_todo
-from backend.app.schemas import schema_todo
-from backend.app.api.v1 import api_v1
+from backend.app.business_logic.schemas import schema_todo
+from . import api_v1
+from backend.app.business_logic.connection_utils import SqlAConnectionSession
 # from backend.app.worker.sample_worker import sample_task
 
 
@@ -14,14 +15,16 @@ def hello_world():
 @api_v1.route('/create/todo', methods=['POST'])
 def create_todo():
     todo = schema_todo.TodoCreate().load(request.json)
-    todo = crud_todo.create_todo(todo)
+    with SqlAConnectionSession(current_app.config['SQLALCHEMYDBURI']) as db:
+        todo = crud_todo.create_todo(db, todo)
     current_app.logger.info(f"created {todo} in create_todo endpoint")
     return jsonify({"response": todo})
 
 
 @api_v1.route('/read/todos')
 def read_todos():
-    todos = crud_todo.read_todos()
+    with SqlAConnectionSession(current_app.config['SQLALCHEMY_DATABASE_URI']) as db:  # noqa
+        todos = crud_todo.read_todos(db)
     return jsonify({"response": todos})
 
 
@@ -34,11 +37,13 @@ def read_todo(todo_id):
 @api_v1.route('/update/todo/<int:todo_id>', methods=['PUT'])
 def update_todo(todo_id):
     updated_todo = schema_todo.TodoUpdate().load(request.json)
-    updated_todo = crud_todo.update_todo(todo_id, updated_todo)
+    with SqlAConnectionSession(current_app.config['SQLALCHEMYDBURI']) as db:
+        updated_todo = crud_todo.update_todo(db, todo_id, updated_todo)
     return jsonify({"response": updated_todo})
 
 
 @api_v1.route('/delete/todo/<int:todo_id>', methods=['DELETE'])
 def delete_todo(todo_id):
-    todo = crud_todo.delete_todo(todo_id)
+    with SqlAConnectionSession(current_app.config['SQLALCHEMYDBURI']) as db:
+        todo = crud_todo.delete_todo(db, todo_id)
     return jsonify({"response": todo})

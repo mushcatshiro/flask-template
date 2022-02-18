@@ -2,7 +2,7 @@ import logging
 import os
 
 
-from flask import g, request
+from flask import request
 from dotenv import load_dotenv
 
 
@@ -12,7 +12,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class RequestFormatter(logging.Formatter):
     def format(self, record):
-        record.context = g.context
         record.request_ip = request.remote_addr
         return super().format(record)
 
@@ -61,7 +60,7 @@ class TestingConfig(Config):
         app.logger.removeHandler(default_handler)
         app.logger.setLevel(logging.DEBUG)
         formatter = RequestFormatter(
-            '[%(asctime)s] payload: %(context)s '
+            '[%(asctime)s] '
             '%(levelname)s in %(module)s: %(message)s'
         )
 
