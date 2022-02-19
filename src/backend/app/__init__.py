@@ -28,6 +28,8 @@ def create_app(config_name):
 
 
     from backend.app.api import api as api_blueprint
+    from backend.app.api.v1 import api_v1
+    api_blueprint.register_blueprint(api_v1, url_prefix='/v1')
     app.register_blueprint(api_blueprint, url_prefix='/api')
 
 
