@@ -30,7 +30,8 @@ def read_todos():
 
 @api_v1.route('/read/todo/<int:todo_id>')
 def read_todo(todo_id):
-    todo = crud_todo.read_todo(todo_id)
+    with SqlAConnectionSession(current_app.config['SQLALCHEMY_DATABASE_URI']) as db:  # noqa
+        todo = crud_todo.read_todo(db, todo_id)
     return jsonify({"response": todo})
 
 

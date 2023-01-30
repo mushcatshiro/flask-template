@@ -42,7 +42,7 @@ def log_request(response):
 @api.errorhandler(BaseException)
 def error_response(e):
     # TODO: to verify what e is being logged
-    current_app.logger(e)
+    current_app.logger.error(e.err_message)
     return jsonify(
         {
             'error': e.__class__.__name__,
@@ -53,7 +53,7 @@ def error_response(e):
 
 @api.errorhandler(ValidationError)
 def schema_validation_error(e):
-    current_app.logger(e)
+    current_app.logger.error(e)
     return jsonify(
         {
             'error': e.__class__.__name__,

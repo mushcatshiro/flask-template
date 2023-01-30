@@ -1,5 +1,6 @@
 from ..schemas import TodoSchema
 from ..models import Todo
+from ..custom_exceptions import ResourceNotFoundError
 
 
 def create_todo(db, new_todo):
@@ -22,8 +23,14 @@ def update_todo(db, todo_id, new_todo):
     return TodoSchema().dump(db_todo)
 
 
-def read_todo(todo_id):
-    todo = Todo.query.get_or_404(todo_id)
+def read_todo(db, todo_id):
+    todo = db.conn.query(Todo).filter(Todo.id == todo_id).first()
+    if todo is None:
+        raise ResourceNotFoundError(
+            message=f'id {todo_id} is not found',
+            err_message=f'id {todo_id} is not found in db',
+            status_code=404
+        )
     return TodoSchema().dump(todo)
 
 
