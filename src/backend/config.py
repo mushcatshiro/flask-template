@@ -19,6 +19,17 @@ class RequestFormatter(logging.Formatter):
 class Config:
     PROJECT_NAME = os.environ.get('PROJECT_NAME')
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'R4nd0MS3cret'
+    MAIL_SERVER = None  # pending setup
+    MAIL_PORT = None  # pending setup
+    MAIL_USERNAME = None  # pending setup
+    MAIL_PASSWORD = None  # pending setup
+    '''
+    hint:
+    psql        - postgresql+psycopg2://user:pass@host:port/dbname
+    mssql       - mysql+pymysql://user:password@host:port/dbname
+    sqlite/win  - sqlite:///C:\\path\\to\\foo.db
+    sqlite/unix - sqlite:////absolute/path/to/foo.db
+    '''
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMYDBURI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     BASEDIR = basedir

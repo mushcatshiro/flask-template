@@ -28,6 +28,7 @@ flask quick start template. to add cookiecutter. assuming development in unix en
   - [x] hook setup
   - [x] exception base class
   - [ ] mixin(s)
+  - [ ] filesystem support
 - [ ] flask app testing
 - [ ] post deployment testing script
 - [x] support multiple requirements.txt
@@ -39,8 +40,14 @@ flask quick start template. to add cookiecutter. assuming development in unix en
   - [ ] CORS
   - [ ] celery
   - [ ] sqlalchemy
+  - [ ] static html?
 - [ ] logging for unit testing
 - [ ] exceptions logging and user message
+
+### priority
+
+1. coockiecutter support (justification removing dependencies is a hassle)
+2. celery support
 
 ### contentious issues
 
