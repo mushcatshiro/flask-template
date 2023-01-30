@@ -16,30 +16,13 @@ class RequestFormatter(logging.Formatter):
         return super().format(record)
 
 
-class CeleryConfig:
-    # redis :// [[username :] password@] host [: port] [/ database]
-    broker_url = os.environ.get('CELERY_BROKER_URL')
-    backend_result_storage = os.environ.get('CELERY_BACKEND_RESULT_STORAGE')
-
-
 class Config:
     PROJECT_NAME = os.environ.get('PROJECT_NAME')
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'R4nd0MS3cret'
-    MAIL_SERVER = None  # pending setup
-    MAIL_PORT = None  # pending setup
-    MAIL_USERNAME = None  # pending setup
-    MAIL_PASSWORD = None  # pending setup
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMYDBURI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     BASEDIR = basedir
-    PSQLDB = {
-        'host': os.environ.get('PSQLDBHOST'),
-        'username': os.environ.get('PSQLDBUSERNAME'),
-        'password': os.environ.get('PSQLDBPASSWORD'),
-        'port': os.environ.get('PSQLDBPORT'),
-        'dbtype': 'psql',
-        'as_dict': True
-    }
+    
 
     @staticmethod
     def init_app(app):

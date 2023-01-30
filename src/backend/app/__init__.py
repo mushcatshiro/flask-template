@@ -1,19 +1,11 @@
 from flask import Flask, jsonify
 from flask_marshmallow import Marshmallow
-from backend.config import config  # , CeleryConfig
-# from celery import Celery
+from backend.config import config
 from flask_sqlalchemy import SQLAlchemy
 
 
 db = SQLAlchemy()
 ma = Marshmallow()
-'''
-celery = Celery(
-    __name__,
-    broker=CeleryConfig.CELERY_BROKER_URL,
-    backend=CeleryConfig.CELERY_BROKER_URL
-)
-'''
 
 
 def create_app(config_name):
@@ -23,8 +15,6 @@ def create_app(config_name):
 
     db.init_app(app)
     ma.init_app(app)
-    # celery.conf.update(app.config)
-    # update_celery(app, celery)
 
 
     from backend.app.api import api as api_blueprint
@@ -50,13 +40,3 @@ def register_error(app):
     @app.errorhandler(500)
     def internal_server_error(e):
         return jsonify({"msg": "internal server error"}), 500
-
-'''
-def update_celery(app, celery):
-    class ContextTask(celery.Task):
-        def __call__(self, *args, **kwargs):
-            with app.app_context():
-                return self.run(*args, **kwargs)
-    celery.Task = ContextTask
-    return celery
-'''
